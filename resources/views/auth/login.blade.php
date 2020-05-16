@@ -5,7 +5,7 @@
 <style media="screen">
 *{text-align:center;}
 body{font-family:sans-serif;}
-input[type="email"],input[type="password"]{border:none;border-radius:0;}
+input[type="login_id"],input[type="password"]{border:none;border-radius:0;}
 input{font-size:1rem;line-height:1.5rem;padding:.25rem .5rem;background:#FFF;border-radius:.12rem;margin:.25rem;}
 h3{text-align:center;font-size:2rem;line-height:4rem}
 ul li{list-style:none;}
@@ -19,10 +19,10 @@ button {display:inline-block;text-align:center;vertical-align:middle;user-select
     @csrf
     <ul>
       <li>
-        <label for="email">ログインID</label>
-        <input id="email" type="text" placeholder="あなたのログインID" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <label for="login_id">ログインID</label>
+        <input id="login_id" type="text" placeholder="あなたのログインID" class="form-control @error('login_id') is-invalid @enderror" name="login_id" value="{{ old('login_id') }}" required autocomplete="login_id" autofocus>
 
-        @error('email')
+        @error('login_id')
         <span class="invalid-feedback" role="alert">
           <strong>{{ $message }}</strong>
         </span>
