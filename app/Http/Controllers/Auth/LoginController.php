@@ -40,10 +40,18 @@ class LoginController extends Controller
 
     protected function validateLogin(\Illuminate\Http\Request $request)
     {
+      $request->hash_login_id = hash('sha256', $request->hash_login_id);
+      if(config('app.NOCAPTCHA_SECRET') !== NULL && config('app.NOCAPTCHA_SITEKEY') !== NULL){
         $this->validate($request, [
-            $this->username() => 'required|string',
-            'password' => 'required|string',
-            'g-recaptcha-response' => 'required|captcha'
+          'hash_login_id' => 'required|string',
+          'password' => 'required|string',
+          'g-recaptcha-response' => 'required|captcha'
         ]);
+      }else{
+        $this->validate($request, [
+          'hash_login_id' => 'required|string',
+          'password' => 'required|string'
+        ]);
+      }
     }
 }
