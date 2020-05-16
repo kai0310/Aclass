@@ -15,7 +15,7 @@ class RecaptchaController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'loginid' => 'required|email',
+            'login_id' => 'required|login_id',
             'password' => 'required|min:6',
             'g-recaptcha-response' => 'required|captcha', //reCAPTCHA評価
         ]);
