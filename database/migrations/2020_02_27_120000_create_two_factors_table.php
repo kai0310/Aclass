@@ -16,7 +16,7 @@ class CreateTwoFactorsTable extends Migration
         Schema::create('two_factors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->string('key', 1000);
+            $table->text('key');
             $table->timestamps();
         });
     }

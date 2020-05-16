@@ -15,7 +15,7 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string('file_name');
+            $table->text('file_name');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('group_id')->nullable()->constrained();
             $table->timestamps();
