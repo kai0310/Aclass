@@ -15,7 +15,7 @@ class CreateSubmissionsTable extends Migration
     {
         Schema::create('submissions', function (Blueprint $table) {
             $table->id();
-            $table->string('body', 10000);
+            $table->mediumText('body');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('task_id')->constrained();
             $table->timestamps();

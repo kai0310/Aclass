@@ -123,6 +123,9 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'NOCAPTCHA_SECRET' => env('NOCAPTCHA_SECRET'),
+    'NOCAPTCHA_SITEKEY' => env('NOCAPTCHA_SITEKEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
