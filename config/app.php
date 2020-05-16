@@ -126,6 +126,8 @@ return [
     'NOCAPTCHA_SECRET' => env('NOCAPTCHA_SECRET'),
     'NOCAPTCHA_SITEKEY' => env('NOCAPTCHA_SITEKEY'),
 
+    'USER_KEY' => env('USER_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
