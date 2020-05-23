@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->mediumText('body');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('group_id')->constrained();
+            $table->timestamp('limit')->nullable();
             $table->timestamps();
         });
     }

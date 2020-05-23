@@ -1,60 +1,54 @@
-@extends('layouts.app')
+@extends('layouts.noLogin')
 
-@section('content')
 
-<style media="screen">
-*{text-align:center;}
-body{font-family:sans-serif;}
-input[type="login_id"],input[type="password"]{border:none;border-radius:0;}
-input{font-size:1rem;line-height:1.5rem;padding:.25rem .5rem;background:#FFF;border-radius:.12rem;margin:.25rem;}
-h3{text-align:center;font-size:2rem;line-height:4rem}
-ul li{list-style:none;}
-li{margin:2rem;}
-button {display:inline-block;text-align:center;vertical-align:middle;user-select:none;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;color:#fff;background-color: #007bff;border-color: #007bff;}
-.recaptcha{margin:2rem auto;width:300px;margin-top:20px;}
+@section('style')
+<style>
+td{padding:1rem}
+@media screen and (max-width:600px){
+  td{padding:.25rem}
+}
+tr:nth-of-type(n+5) td, h2{text-align:center}
+.g-recaptcha > div{margin:0 auto}
 </style>
 
-  <h3>ログイン</h3>
-  <form method="POST" action="{{ route('login') }}">
+@section('content')
+<div class=card>
+  <h2>{{config('app.name')}} ログイン</h2>
+  <form method=POST action="{{ route('login') }}">
     @csrf
-    <ul>
-      <li>
-        <label for="login_id">ログインID</label>
-        <input id="login_id" type="text" placeholder="あなたのログインID" class="form-control @error('login_id') is-invalid @enderror" name="login_id" value="{{ old('login_id') }}" required autocomplete="login_id" autofocus>
+    <table style="margin:0 auto">
+      <tr>
+        <td><label for=hash_login_id>ログインID</label></td>
+        <td><input id=hash_login_id type=number class="@error('hash_login_id') is-invalid @enderror" name=hash_login_id value="{{ old('hash_login_id') }}" required autofocus /></td>
+      </tr>
+      @error('hash_login_id')<tr><td colspan=2><span class=invalid-feedback role=alert><strong>{{ $message }}</strong></span></td></tr>@enderror
 
-        @error('login_id')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-      </li>
+      <tr>
+        <td><label for=password>パスワード</label></td>
+        <td><input id=password type=password class="formInput @error('password') is-invalid @enderror" name=password required /></td>
+      </tr>
+      @error('password')<tr><td colspan=2><span class=invalid-feedback role=alert><strong>{{ $message }}</strong></span></td></tr>@enderror
 
-      <li>
-        <label for="password">パスワード</label>
-        <input id="password" type="password" placeholder="あなたのパスワード" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+      <tr>
+        <td><label for=twofactor>2要素認証（有効時のみ）</label></td>
+        <td><input id=twofactor type=number class="formInput @error('twofactor') is-invalid @enderror" name=twofactor /></td>
+      </tr>
+      @error('twofactor')<tr><td colspan=2><span class=invalid-feedback role=alert><strong>{{ $message }}</strong></span></td></tr>@enderror
 
-        @error('password')
-        <span class="invalid-feedback" role="alert">
-          <strong>{{ $message }}</strong>
-        </span>
-        @enderror
-      </li>
-    </ul>
+      <tr><td colspan=2>{!! NoCaptcha::renderJs() !!}{!! NoCaptcha::display() !!}</td></tr>
 
-    <div class="recaptcha">
-      {!! NoCaptcha::renderJs() !!}
-      {!! NoCaptcha::display() !!}
-    </div>
+      <tr>
+        <td colspan=2>
+          <input class=form-check-input type=checkbox name=remember id=remember {{ old('remember') ? 'checked' :'' }}>
+          <label for=remember>ログイン状態を保存する</label>
+        </td>
+      </tr>
 
-    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-    <label for="remember">ログイン状態を保存する</label><br>
+      <tr><td colspan=2><input type=submit value="ログイン" /></td></tr>
 
-    <button type="submit" class="btn">ログイン</button>
+      <tr><td colspan=2>パスワードを忘れた場合は所属先の管理者までお問い合わせください。</td></tr>
 
-    @if (Route::has('password.request'))
-    <a class="btn btn-link" href="{{ route('password.request') }}">
-      {{ __('Forgot Your Password?') }}
-    </a>
-    @endif
+    </table>
   </form>
+</div>
 @endsection

@@ -17,6 +17,7 @@ class CreateSchedulesTable extends Migration
             $table->id();
             $table->text('name');
             $table->mediumText('discription')->nullable();
+            $table->timestamp('time');
             $table->timestamps();
         });
     }
