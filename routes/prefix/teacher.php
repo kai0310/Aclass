@@ -18,7 +18,6 @@ Route::group(['middleware' => ['auth', 'teacher']], function () {
   Route::get('/', function(){ return view('pages.teachers.index'); })->name('teacher');
 
   Route::group(['prefix' => 'post'], function(){
-    Route::get('/', 'Teacher\PostController@form')->name('post');
     Route::get('/new', 'Teacher\PostController@form')->name('newPost');
     Route::post('/new', 'Teacher\PostController@new');
   });
@@ -43,5 +42,10 @@ Route::group(['middleware' => ['auth', 'teacher']], function () {
       Route::get('/{group}', 'Teacher\GroupController@single')->where(['group', '[1-9]\d*'])->name('groupSingle');
       Route::post('/{group}/new', 'Teacher\GroupController@newUser')->where(['group', '[1-9]\d*'])->name('groupNewUser');
       Route::post('/{group}/delete', 'Teacher\GroupController@deleteUser')->where(['group', '[1-9]\d*'])->name('groupDeleteUser');
+    });
+
+    Route::group(['prefix' => 'schedule'], function(){
+      Route::get('/new', 'Teacher\ScheduleController@form')->name('newSchedule');
+      Route::post('/new', 'Teacher\ScheduleController@new');
     });
   });

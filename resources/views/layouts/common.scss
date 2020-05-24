@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+a{color:#06F;text-decoration:none}
 input,button,select,textarea{
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -43,6 +44,10 @@ input{
     100%{background:#FFF}
   }
 }
+button{
+  background:#18E;padding:.5rem 1rem;color:#FFF;box-shadow:0 2px 10px #0003;transition: all .25s;
+  &:hover{box-shadow:none}
+}
 textarea{background:#FFF;padding:.5rem 1rem;border:solid 1px #CCC}
 select{padding:.5rem 1rem;border:1px solid #CCC}
 
@@ -53,7 +58,7 @@ h4{font-size:1.25rem}
 .card{padding:.5rem 1rem;border-radius:.25rem;background:#FFF;box-shadow:0 2px 10px #0003}
 .card:nth-of-type(n+2){margin-top:calc(10px + 1.5rem)}
 .button{
-  display:inline-block;padding:.25rem 1rem;border-radius:.25rem;cursor:pointer;box-shadow:0 2px 10px #0003;transition:all .25s;text-decoration:none;
+  display:inline-block;padding:.25rem 1rem;border-radius:.25rem;cursor:pointer;box-shadow:0 2px 10px #0003;transition:all .25s;
   &.first-button{background:linear-gradient(135deg, #0AF, #06F);color:#FFF}
   &.second-button{background:linear-gradient(135deg, #CCC, #AAA);color:#FFF}
   &:hover{box-shadow:none}
@@ -104,7 +109,6 @@ header{
           vertical-align: middle;
           color: inherit;
           background: inherit;
-          text-decoration: none;
         }
         &.active, &:hover{
           color: #FFF;

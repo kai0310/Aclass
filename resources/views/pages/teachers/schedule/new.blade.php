@@ -10,13 +10,13 @@ input[type="text"],textarea{width:100%}
 
 @section('content')
 <div class=card>
-  <h3>新しく掲示板に投稿する</h3>
+  <h3>新しく予定を投稿する</h3>
   <form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div>
-      <label for=title>タイトル</label><br />
-      <input type=text name=title id=title placeholder="タイトルを入力してください" value="{{ old('title') }}" required />
-      @error('title')<br /><strong>{{ $message }}</strong>@enderror
+      <label for=name>名前</label><br />
+      <input type=text name=name id=name placeholder="タイトルを入力してください" value="{{ old('name') }}" required />
+      @error('name')<br /><strong>{{ $message }}</strong>@enderror
     </div>
     <div>
       <span>投稿先グループ</span><br />
@@ -31,17 +31,14 @@ input[type="text"],textarea{width:100%}
       @error('groups[]')<br /><strong>{{ $message }}</strong>@enderror
     </div>
     <div>
-      <label for=body>本文</label><br />
-      <textarea name=body id=body required rows=10>{{ old('body') }}</textarea>
-      @error('body')<br /><strong>{{ $message }}</strong>@enderror
+      <label for=description>説明</label><br />
+      <textarea name=description id=description required rows=10>{{ old('description') }}</textarea>
+      @error('description')<br /><strong>{{ $message }}</strong>@enderror
     </div>
     <div>
-      <input type=checkbox name=mail id="mail" value="true"/>
-      <label for="mail"><span>メールで通知する</span></label>
-    </div>
-    <div>
-      <label for=files>添付ファイル</label><br />
-      <input type=file name=files[] id=files multiple />
+      <label for=limit>日時</label><br />
+      <input type=datetime-local name=time id=time value="{{$group['time']}}" required />
+      @error('time')<br /><strong>{{ $message }}</strong>@enderror
     </div>
     <div style=text-align:right>
       <input type=submit />

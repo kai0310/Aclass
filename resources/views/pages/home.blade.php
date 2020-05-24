@@ -6,6 +6,11 @@
 h3{font-size:1.5rem}
 h4{font-size:1.1rem;line-height:1.5rem}
 .group{background:#005;color:#FFF;padding:.25rem .5rem;border-radius:.25rem;font-size:.9rem}
+.schedule{position:relative}
+<?php foreach($schedules as $schedule) { ?>
+  .schedule#schedule{{$schedule['id']}}::before{display:block;background:#FFF;position:absolute;top:1.5rem;opacity:0;transition:all .25s;content:'{{decryptData($schedule['description'], 'DATA_KEY')}}'}
+  .schedule#schedule{{$schedule['id']}}:hover::before{opacity:1}
+  <?php } ?>
 </style>
 @endsection
 
@@ -19,10 +24,10 @@ h4{font-size:1.1rem;line-height:1.5rem}
   <h3>直近の予定</h3>
   <?php $i = 0; ?>
   <?php foreach($schedules as $schedule){ ?>
-    <div class=schedule>
-      <h4 class=omit>{{date('n / j', strtotime($schedule['time']))}} - {{$schedule['name']}}</h4>
+    <div class="schedule omit" id="schedule{{$schedule['id']}}">
+      <h4 class=omit>{{date('n / j', strtotime($schedule['time']))}} - {{decryptData($schedule['name'], 'DATA_KEY')}}</h4>
       <?php foreach($schedule->groups as $group){ ?>
-        <span class=group>{{$group['name']}}</span>
+        <span class=group>{{decryptData($group['name'], 'DATA_KEY')}}</span>
         <?php $i++; ?>
       <?php } ?>
     </div>

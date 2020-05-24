@@ -22,7 +22,7 @@ if(Level::count()<1){
   Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
   Route::post('/register', 'Auth\RegisterController@register');
 }else{
-  Route::get('/new', function(){ return view('auth.new'); })->middleware('guest');
+  Route::get('/new', function(){ return view('auth.new'); })->middleware('guest')->name('new');
   Route::post('/new', 'Auth\NewController@new')->middleware('guest');
 }
 

@@ -97,7 +97,7 @@ class RegisterController extends Controller
         $hash_login_id = hash('sha256', $login_id);
         $encrypt_login_id = encryptData($login_id, 'USER_KEY');
         $encrypt_email = encryptData($data['email'], 'USER_KEY');
-        $encrypt_name = encryptData(trim($validated['name']), 'USER_KEY');
+        $encrypt_name = encryptData(trim($data['name']), 'USER_KEY');
 
         return User::create([
             'login_id' => $encrypt_login_id,

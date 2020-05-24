@@ -42,7 +42,6 @@
 document.getElementById('twoFactorBackground').onclick = function(){
   document.getElementById('twoFactorBackground').style.display = 'none';
   document.getElementById('twoFactor').style.display = 'none';
-
 }
 </script>
 @endsection

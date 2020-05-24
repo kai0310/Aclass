@@ -23,4 +23,10 @@ Route::group(['middleware' => ['auth', 'administor']], function () {
   Route::get('/register', function(){ return view('pages.administors.registers.register'); })->name('registerUser');
   Route::post('/register', 'Administor\RegisterController@create');
 
+  Route::get('/setting', function(){ return view('pages.administors.userSettings.index'); })->name('userSetting');
+  Route::post('/setting/user', 'Administor\UserSettingController@userSingle')->name('userInfo');
+  Route::post('/setting', 'Administor\UserSettingController@change');
+
+  Route::get('/csv', 'Administor\CsvController@index')->name('csv');
+
 });

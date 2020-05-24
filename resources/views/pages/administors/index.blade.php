@@ -17,7 +17,8 @@
 <?php
 $menus = [
   ['displayName' => 'ユーザーのレベルを変える', 'linkHref' => route('changeLevel'), 'linkIcon' => 'fas fa-layer-group'],
-  ['displayName' => 'ユーザー登録', 'linkHref' => route('registerUser'), 'linkIcon' => 'fas fa-user-plus']
+  ['displayName' => 'ユーザー登録', 'linkHref' => route('registerUser'), 'linkIcon' => 'fas fa-user-plus'],
+  ['displayName' => 'ユーザー設定変更', 'linkHref' => route('userSetting'), 'linkIcon' => 'fas fa-user-cog'],
 ];
 ?>
 

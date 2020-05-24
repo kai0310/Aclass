@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
   public function form(){
-    return view('pages.teachers.task.new', [
-      'groups' => Group::get()
-    ]);
+    return view('pages.teachers.task.new', [ 'groups' => Group::get() ]);
   }
 
   public function new(Request $request){

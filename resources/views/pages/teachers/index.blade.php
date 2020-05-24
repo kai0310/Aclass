@@ -19,6 +19,7 @@ $menus = [
   ['displayName' => '課題', 'linkHref' => route('task'), 'linkIcon' => 'fas fa-inbox'],
   ['displayName' => '掲示板に投稿する', 'linkHref' => route('newPost'), 'linkIcon' => 'fas fa-paper-plane'],
   ['displayName' => 'グループ', 'linkHref' => route('group'), 'linkIcon' => 'fas fa-users'],
+  ['displayName' => '予定', 'linkHref' => route('newSchedule'), 'linkIcon' => 'fas fa-calendar-alt'],
 ];
 ?>
 

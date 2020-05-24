@@ -17,5 +17,3 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('/home', 'HomeController@index')->name('home');
   Route::get('/welcome', function(){return view('pages.welcome');})->name('welcom');
 });
-
-Route::get('/test', 'TestController@index');

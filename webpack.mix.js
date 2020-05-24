@@ -11,9 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.sass('resources/views/layouts/common.scss', '../resources/views/layouts/');
+mix.sass('resources/views/layouts/common.scss', '../resources/views/layouts/')
+   .sass('resources/views/layouts/mail.scss', '../resources/views/layouts/');
    /*.sass('resources/views/layouts/common.scss', '../resources/views/layouts/')
-   .sass('resources/views/layouts/common.scss', '../resources/views/layouts/')
    .sass('resources/views/layouts/common.scss', '../resources/views/layouts/')
    .sass('resources/views/layouts/common.scss', '../resources/views/layouts/')
    .sass('resources/views/layouts/common.scss', '../resources/views/layouts/')
