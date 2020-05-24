@@ -20,8 +20,11 @@ class CreateUsersTable extends Migration
             $table->text('name');
             $table->text('email');
             $table->text('hash_email');
+            $table->text('twofactor')->nullable();
+            $table->boolean('temporary')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->text('password');
+            $table->text('temporary_password')->nullable();
             $table->foreignId('level_id')->constrained();
             $table->rememberToken();
             $table->timestamps();

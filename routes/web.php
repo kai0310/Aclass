@@ -13,12 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/home', 'HomeController@index')->name('home');
+  Route::get('/welcome', function(){return view('pages.welcome');})->name('welcom');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('recaptcha', 'RecaptchaController@create');
-Route::post('store', 'RecaptchaController@store');

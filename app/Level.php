@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Level extends Model
 {
   protected $fillable = [
-    'name'
+    'name', 'teacher', 'administor'
   ];
+
+  public function users(){
+    return $this->hasMany('App\User');
+  }
 }

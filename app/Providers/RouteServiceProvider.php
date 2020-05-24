@@ -46,6 +46,15 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+        $this->mapWebTaskRoutes();
+        $this->mapWebPostRoutes();
+        $this->mapWebOtherRoutes();
+        $this->mapWebTeacherRoutes();
+        $this->mapWebAdministorRoutes();
+
+        $this->mapWebAuthRoutes();
+        $this->mapWebFileRoutes();
+
         //
     }
 
@@ -70,11 +79,35 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
-    {
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/api.php'));
+    protected function mapApiRoutes(){
+        Route::prefix('api')->middleware('api')->namespace($this->namespace)->group(base_path('routes/api.php'));
+    }
+
+    protected function mapWebTaskRoutes(){
+        Route::prefix('task')->middleware('web')->namespace($this->namespace)->group(base_path('routes/prefix/task.php'));
+    }
+
+    protected function mapWebPostRoutes(){
+        Route::prefix('post')->middleware('web')->namespace($this->namespace)->group(base_path('routes/prefix/post.php'));
+    }
+
+    protected function mapWebOtherRoutes(){
+        Route::prefix('other')->middleware('web')->namespace($this->namespace)->group(base_path('routes/prefix/other.php'));
+    }
+
+    protected function mapWebTeacherRoutes(){
+        Route::prefix('teacher')->middleware('web')->namespace($this->namespace)->group(base_path('routes/prefix/teacher.php'));
+    }
+
+    protected function mapWebAdministorRoutes(){
+        Route::prefix('administor')->middleware('web')->namespace($this->namespace)->group(base_path('routes/prefix/administor.php'));
+    }
+
+    protected function mapWebAuthRoutes(){
+        Route::middleware('web')->namespace($this->namespace)->group(base_path('routes/auth.php'));
+    }
+
+    protected function mapWebFileRoutes(){
+        Route::prefix('files')->middleware('web')->namespace($this->namespace)->group(base_path('routes/file.php'));
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use PragmaRX\Google2FAQRCode\Google2FA;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -40,18 +42,40 @@ class LoginController extends Controller
 
     protected function validateLogin(\Illuminate\Http\Request $request)
     {
-      $request->hash_login_id = hash('sha256', $request->hash_login_id);
+      $request->merge(['hash_login_id' => hash('sha256', $request->input('hash_login_id'))]);
+
+      if(User::where('hash_login_id', $request->input('hash_login_id'))->first()['twofactor']===NULL){
+        $request->merge([ 'twofactor' => true ]);
+      }else if(empty($request->input('twofactor'))){
+        $request->merge([ 'twofactor' => null ]);
+      }else{
+        $twofactor = new Google2FA();
+        $twofactor_result = $twofactor->verifyKey(
+          decryptData(User::where('hash_login_id', $request->input('hash_login_id'))->first()['twofactor'], 'USER_KEY'),
+          $request->input('twofactor')
+        );
+        $request->merge([ 'twofactor' => $twofactor_result ]);
+      }
+
+
       if(config('app.NOCAPTCHA_SECRET') !== NULL && config('app.NOCAPTCHA_SITEKEY') !== NULL){
         $this->validate($request, [
-          'hash_login_id' => 'required|string',
+          $this->username() => 'required|string',
           'password' => 'required|string',
-          'g-recaptcha-response' => 'required|captcha'
+          'g-recaptcha-response' => 'required|captcha',
+          'twofactor' => 'required|accepted'
         ]);
       }else{
         $this->validate($request, [
-          'hash_login_id' => 'required|string',
-          'password' => 'required|string'
+          $this->username() => 'required|string',
+          'password' => 'required|string',
+          'twofactor' => 'required|accepted'
         ]);
       }
+    }
+
+    public function username()
+    {
+        return 'hash_login_id';
     }
 }

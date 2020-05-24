@@ -17,4 +17,12 @@ class Group extends Model
   public function tasks(){
     return $this->hasMany('App\Task');
   }
+
+  public function schedules(){
+    return $this->belongsToMany('App\Schedule');
+  }
+
+  public function posts(){
+    return $this->hasMany('App\Post')->orderBy('id', 'desc');
+  }
 }

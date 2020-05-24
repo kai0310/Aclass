@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login_id', 'hash_login_id', 'name', 'email', 'hash_email', 'password', 'level_id'
+        'login_id', 'hash_login_id', 'name', 'email', 'twofactor', 'hash_email', 'password', 'level_id', 'temporary', 'temporary_password'
     ];
 
     /**
@@ -39,5 +39,13 @@ class User extends Authenticatable
 
     public function group(){
       return $this->belongsToMany('App\Group');
+    }
+
+    public function level(){
+      return $this->belongsTo('App\Level');
+    }
+
+    public function submissions(){
+      return $this->hasMany('App\Submission');
     }
 }

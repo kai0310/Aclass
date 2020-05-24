@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,6 +125,10 @@ return [
 
     'NOCAPTCHA_SECRET' => env('NOCAPTCHA_SECRET'),
     'NOCAPTCHA_SITEKEY' => env('NOCAPTCHA_SITEKEY'),
+
+    'USER_KEY' => env('USER_KEY'),
+    'TEMP_KEY' => env('TEMP_KEY'),
+    'DATA_KEY' => env('DATA_KEY'),
 
     /*
     |--------------------------------------------------------------------------
