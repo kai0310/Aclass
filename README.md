@@ -15,7 +15,4 @@ Aclassとは、新しい形の教育プラットフォームです。
 
 ## ライセンス
 
-基本的には、ライセンスはMIT LICENSEになります。
-
-ただし、一部ファイルのみOFLが適用されます。
-/storage/private/NotoSansJP/*
+MIT LICENSE
