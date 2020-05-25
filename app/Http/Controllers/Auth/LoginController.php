@@ -44,7 +44,9 @@ class LoginController extends Controller
     {
       $request->merge(['hash_login_id' => hash('sha256', $request->input('hash_login_id'))]);
 
-      if(User::where('hash_login_id', $request->input('hash_login_id'))->first()['twofactor']===NULL){
+      if(User::where('hash_login_id', $request->input('hash_login_id'))->first()===NULL){
+        $request->merge([ 'twofactor' => false ]);
+      }else if(User::where('hash_login_id', $request->input('hash_login_id'))->first()['twofactor']===NULL){
         $request->merge([ 'twofactor' => true ]);
       }else if(empty($request->input('twofactor'))){
         $request->merge([ 'twofactor' => null ]);
