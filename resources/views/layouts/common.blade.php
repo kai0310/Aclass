@@ -29,6 +29,14 @@
 </header>
 <main><div class=inner>@yield('content')</div></main>
 <footer></footer>
+<?php if(session()->get('result') !== NULL){ ?>
+  <div class="message {{session()->get('result')}}"><?php
+  if(session()->get('message') !== NULL){ echo htmlspecialchars(session()->get('message')); }
+  else if(session()->get('result') === 'success'){echo '成功しました。';}
+  else if(session()->get('result') === 'failed'){echo '失敗しました。';}
+  else{echo '予想外の事態が発生しました。';}
+  ?></div>
+<?php } ?>
 <script>
 document.getElementById('closeBoard').onclick = function(){
   document.getElementById('menuToggle').checked = false;

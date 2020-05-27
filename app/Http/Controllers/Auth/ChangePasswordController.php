@@ -11,7 +11,7 @@ class ChangePasswordController extends Controller
 {
   public function index(Request $request){
     if(!(Hash::check($request->get('nowPassword'), Auth::user()['password']))) {
-      return redirect()->back()->with('changePasswordError', '現在のパスワードが間違っています。');
+      return redirect()->back()->with(['result' => 'failed', 'message' => '現在のパスワードが間違っています。']);
     }
 
     $validated = $request->validate([
@@ -22,6 +22,6 @@ class ChangePasswordController extends Controller
     $user = Auth::user();
     $user->password = Hash::make($validated['newPassword']);
     $user->save();
-    return redirect()->back()->with('changePasswordSuccess', '変更が完了しました。');
+    return redirect()->back()->with(['result' => 'success', 'message' => '変更が完了しました。']);
   }
 }

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'accepted'             => '二要素認証に失敗しました。',
+    'accepted'             => ':attributeを承認してください。',
     'active_url'           => ':attributeが有効なURLではありません。',
     'after'                => ':attributeには、:dateより後の日付を指定してください。',
     'after_or_equal'       => ':attributeには、:date以降の日付を指定してください。',
@@ -41,7 +41,7 @@ return [
     'distinct'             => ':attributeには異なった値を指定してください。',
     'email'                => ':attributeには、有効なメールアドレスを指定してください。',
     'ends_with'            => ':attributeには、:valuesのどれかで終わる値を指定してください。',
-    'exists'               => '選択された:attributeは正しくありません。',
+    'exists'               => '選択・入力された:attributeは存在しません。',
     'file'                 => ':attributeにはファイルを指定してください。',
     'filled'               => ':attributeに値を指定してください。',
     'gt'                   => [
@@ -129,8 +129,8 @@ return [
     */
 
     'custom' => [
-        '属性名' => [
-            'ルール名' => 'カスタムメッセージ',
+        'twofactor' => [
+            'accepted' => '2要素認証に失敗しました。',
         ],
     ],
 
@@ -145,6 +145,13 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+      'hash_login_id' => 'ログインID',
+      'password' => 'パスワード',
+      'twofactor' => '2要素認証',
+      'g-recaptcha-response' => 'reCAPTCHA',
+      'user_id' => 'ユーザー識別ID',
+      'level_id' => 'レベル'
+    ],
 
 ];

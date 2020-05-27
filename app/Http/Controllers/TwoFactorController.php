@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 class TwoFactorController extends Controller
 {
   public function change(Request $request){
+    if (!extension_loaded('imagick')){
+      return redirect()->back()->with([
+        'result' => 'failed',
+        'message' => 'サーバーが対応していません。'
+      ]);
+    }
+
     if(isset(Auth::user()['twofactor'])){
       $user = Auth::user();
       $user->twofactor = NULL;

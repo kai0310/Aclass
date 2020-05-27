@@ -75,8 +75,4 @@ textarea{width:100%}
     <div style=text-align:center>期限切れです。</div>
   <?php } ?>
 </div>
-<?php if(session()->get('message')!==NULL&&session()->get('result')!==NULL){ ?>
-  <div class="message {{session()->get('result')}}">{{session()->get('message')}}</div>
-<?php } ?>
-<?php session()->forget('message');session()->forget('result') ?>
 @endsection

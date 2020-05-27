@@ -2,9 +2,11 @@
 
 @section('style')
 <style>
-.users,.levels{display:none}
-form{text-align:center}
-form div:nth-of-type(n+2){margin-top:1rem}
+#changeUserLevelId{margin:0 auto}
+#changeUserLevelId tr:nth-of-type(n+2) td{padding-top:1rem}
+#changeUserLevelId tr:not(:last-of-type) input, #changeUserLevelId select{width: 100%}
+#changeUserLevelId tr:not(:last-of-type) td:first-of-type{text-align:right}
+#changeUserLevelId tr:last-of-type td{text-align: right}
 </style>
 @endsection
 
@@ -13,37 +15,35 @@ form div:nth-of-type(n+2){margin-top:1rem}
   <h3>ユーザーの権限設定</h3>
   <form action="" method="POST">
     @csrf
-    <?php if($errors->any()){ foreach($errors->all() as $error){
-      echo "<strong>",$error,"</strong><br />";
-    } } ?>
-    <div>
-      <label>ユーザー識別ID：<input type="text" name=user_id id=user_id value="{{ old('user_id') }}" /></label>
-    <div>
-      <label>
-        レベル：
-        <select name=level_id>
-          <option value="">レベルを選択してください</option>
-          <?php foreach( $levels as $level ){ ?><option value="{{$level['id']}}">{{decryptData($level['name'], 'DATA_KEY')}}</option><?php } ?>
-        </select>
-      </lebel>
-    </div>
-    <div>
-      <input type=submit value="保存" />
-    </div>
+    <?php if($errors->any()){ ?>
+      <div class="message failed">
+        <?php foreach($errors->all() as $error){ ?>
+          - {{$error}}<br />
+        <?php } ?>
+      </div>
+    <?php } ?>
+    <table id=changeUserLevelId>
+      <tbody>
+        <tr>
+          <td><label for=user_id>ユーザー識別ID：</label></td>
+          <td><input type=number class="@error('user_id') is-invalid @enderror" name=user_id id=user_id value="{{ old('user_id') }}" required /></td>
+        </tr>
+        <tr>
+          <td><label for=level_id>レベル：</lebel></td>
+          <td>
+            <select name=level_id class="@error('level_id') is-invalid @enderror" required>
+              <option>レベルを選択してください</option>
+              <?php foreach( $levels as $level ){ ?>
+                <option value="{{$level['id']}}" {{(old('level_id')==$level['id'] ? 'selected' : '')}}>
+                  {{decryptData($level['name'], 'DATA_KEY')}}
+                </option>
+              <?php } ?>
+            </select>
+          </td>
+        </tr>
+        <tr><td colspan=2><input type=submit /></td></tr>
+      </tbody>
+    </table>
   </form>
 </div>
-@endsection
-
-@section('script')
-<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
-<script>
-$('select[name="chooseGroup"]').change(function(){
-  $('.users').css('display', 'none');
-  $('#group' + $(this).val()).css('display', 'inline-block');
-});
-$('select[name="userId"]').change(function(){
-  $('.levels').css('display', 'none');
-  $('#user' + $(this).val()).css('display', 'inline-block');
-});
-</script>
 @endsection

@@ -12,9 +12,22 @@ class NewController extends Controller
 {
   public function new(Request $request){
 
-    $request->validate([
-      'name' => ['required', 'string', 'max:255'],
+    $messages = [
+    'same'    => 'The :attribute and :other must match.',
+    'size'    => 'The :attribute must be exactly :size.',
+    'between' => 'The :attribute value :input is not between :min - :max.',
+    'in'      => 'The :attribute must be one of the following types: :values',
+];
+
+    Validator::make($request, [
       'hash_login_id' => ['required', 'numeric'],
+      'temporary_password' => ['required', 'numeric'],
+      'password' => ['required', 'string', 'min:8', 'confirmed']
+    ], $messages);
+
+    $request->validate([
+      'hash_login_id' => ['required', 'numeric'],
+      'temporary_password' => ['required', 'numeric'],
       'password' => ['required', 'string', 'min:8', 'confirmed']
     ]);
 
@@ -24,10 +37,11 @@ class NewController extends Controller
     }
 
     $requestUserData = User::where('hash_login_id', hash('sha256', $request->hash_login_id))->where('temporary', true)->first();
-    if(isset($requestUserData) && decryptData($requestUserData['name'], 'USER_KEY') === $request->name && $count === 1){
+    if(isset($requestUserData) && decryptData($requestUserData['temporary_password'], 'USER_KEY') == $request->temporary_password && $count === 1){
       $user = User::where('hash_login_id', hash('sha256', $request->hash_login_id))->first();
       $user->password = Hash::make($request->password);
       $user->temporary = false;
+      $user->temporary_password = NULL;
       $user->save();
 
       $credentials = [
@@ -35,15 +49,15 @@ class NewController extends Controller
         'password' => $request->password
       ];
 
-      return redirect('login')->with([
-        'result' => 'success',
-        'message' => '登録に成功しました。ログインしてください。'
-      ]);
-    }else{
-      return redirect()->back()->with([
-        'result' => 'failed',
-        'message' => '該当するユーザーは見つかりませんでした。'
-      ]);
+      if(Auth::attempt($credentials)){
+        return redirect()->route('welcome');
+      }
     }
+
+    return redirect()->back()->with([
+      'result' => 'failed',
+      'message' => '該当するユーザーは見つかりませんでした。'
+    ]);
+
   }
 }
