@@ -19,14 +19,14 @@ class CsvController extends Controller
     if($csv){
       fputcsv($csv, mb_convert_encoding([
         'ログインID',
-        '名前',
-        '仮パスワード'
+        '仮パスワード',
+        '名前'
       ], 'SJIS', 'UTF-8'));
       foreach($users as $user){
         fputcsv($csv, mb_convert_encoding([
           decryptData($user['login_id'], 'USER_KEY'),
-          decryptData($user['name'], 'USER_KEY'),
-          decryptData($user['temporary_password'], 'TEMP_KEY')
+          decryptData($user['temporary_password'], 'USER_KEY'),
+          decryptData($user['name'], 'USER_KEY')
         ], 'SJIS', 'UTF-8'));
       }
     }

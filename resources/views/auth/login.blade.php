@@ -36,6 +36,7 @@ tr:nth-of-type(n+5) td, h2{text-align:center}
       @error('twofactor')<tr><td colspan=2><span class=invalid-feedback role=alert><strong>{{ $message }}</strong></span></td></tr>@enderror
 
       <tr><td colspan=2>{!! NoCaptcha::renderJs() !!}{!! NoCaptcha::display() !!}</td></tr>
+      @error('g-recaptcha-response')<tr><td colspan=2><span class=invalid-feedback role=alert><strong>{{ $message }}</strong></span></td></tr>@enderror
 
       <tr>
         <td colspan=2>

@@ -5,7 +5,11 @@
   box-sizing: border-box;
 }
 
-a{color:#06F;text-decoration:none}
+a{
+  color: #06F;
+  text-decoration: none
+}
+
 input,button,select,textarea{
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -19,134 +23,161 @@ input,button,select,textarea{
   line-height: 1.5rem;
   font-family: sans-serif
 }
-textarea{resize: vertical}
-input[type='submit'],input[type='button'],label,button,select{cursor: pointer}
-select::-ms-expand{display: none}
+
+textarea{
+  resize: vertical
+}
+input[type='submit'],input[type='button'],label,button,select{
+  cursor: pointer
+}
+select::-ms-expand{
+  display: none
+}
 
 input{
   &[type="submit"]{
-    background:#18E;padding:.5rem 1rem;color:#FFF;box-shadow:0 2px 10px #0003;transition: all .25s;
-    &:hover{box-shadow:none}
+    background: #18E;padding: .5rem 1rem;
+    color: #FFF;
+    box-shadow: 0 2px 10px #0003;
+    transition: all .25s;
+    &:hover{box-shadow: none}
   }
-  &[type="text"],&[type="password"],&[type="number"],&[type="email"]{background:#FFF;padding:.5rem 1rem;border:solid 1px #CCC}
-  &[type="checkbox"]{
-    display:none;
-    ~ label{
-      color:#555;
-      &::before{font-family:"Font Awesome 5 Free";display:inline-block;font-weight:400;margin-right:.5rem;content:"\f111"}
-    }
-    &:checked ~ label::before{content:"\f058";color:#07F;text-decoration:underline #07F}
+  &[type="text"],&[type="password"],&[type="number"],&[type="email"]{
+    background: #FFF;
+    padding: .5rem 1rem;
+    border: solid 1px #CCC
   }
-  &.is-invalid{animation: 2s ease-in-out 5 both isInvalid}
-  @keyframes isInvalid {
-    0%{background:#FFf}
-    50%{background:#FAA}
-    100%{background:#FFF}
-  }
-}
-button{
-  background:#18E;padding:.5rem 1rem;color:#FFF;box-shadow:0 2px 10px #0003;transition: all .25s;
-  &:hover{box-shadow:none}
-}
-textarea{background:#FFF;padding:.5rem 1rem;border:solid 1px #CCC}
-select{padding:.5rem 1rem;border:1px solid #CCC}
-
-h3{font-size:1.5rem}
-h4{font-size:1.25rem}
-
-.inner{width:95%;max-width:1000px;margin:0 auto}
-.card{padding:.5rem 1rem;border-radius:.25rem;background:#FFF;box-shadow:0 2px 10px #0003}
-.card:nth-of-type(n+2){margin-top:calc(10px + 1.5rem)}
-.button{
-  display:inline-block;padding:.25rem 1rem;border-radius:.25rem;cursor:pointer;box-shadow:0 2px 10px #0003;transition:all .25s;
-  &.first-button{background:linear-gradient(135deg, #0AF, #06F);color:#FFF}
-  &.second-button{background:linear-gradient(135deg, #CCC, #AAA);color:#FFF}
-  &:hover{box-shadow:none}
-}
-.error{text-align:center;font-weight:bold;color:#F60}
-.omit{vertical-align:top;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.message{
-  &.success,&.failed{padding:1rem 2rem;position:fixed;left:50%;transform:translateX(-50%);z-index:1000;top:2rem;animation:3s ease-in-out 10s both fadeOut}
-  &.success{background:#CFC;color:#070}
-  &.failed{background:#FCC;color:#700}
-}
-
-body{background:#F5F5F5;font-family:'Noto Sans JP', sans-serif}
-
-header{
-  background:#FFF;
-  box-shadow:0 2px 10px #0003;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index: 999;
-  .inner {
-    position: relative;
-    img {
-      height: 2rem;
-      display:inline-block;
-      margin: .5rem;
-      vertical-align: top
-    }
-    ul{
-      list-style: none;
-      display: inline-block;
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-size: 0rem;
-      li {
-        display:inline-block;
-        color: #06F;
-        background: #FFF;
-        transition: all .25s;
-        a {
+    &[type="checkbox"]{
+      display: none;
+      ~ label{
+        color: #555;
+        &::before{
+          font-family: "Font Awesome 5 Free";
           display: inline-block;
-          line-height: 3rem;
-          padding: 0 1rem;
-          font-size: 1rem;
-          vertical-align: middle;
-          color: inherit;
-          background: inherit;
-        }
-        &.active, &:hover{
-          color: #FFF;
-          background: #06F;
+          font-weight: 400;
+          margin-right: .5rem;
+          content: "\f111"
         }
       }
-    }
-    label, #closeBoard{display:none}
-    @media screen and (max-width:600px){
-      label{display:inline-block;line-height:3rem;position:absolute;top:0;right:0}
-      ul{display:none}
-      #menuToggle:checked ~ ul{
-        display:block;
-        position: fixed;
-        top: 3rem;
-        left: 0;
-        z-index: 20;
-        li {
-          width: 100%
-        }
-      }
-      #menuToggle:checked ~ #closeBoard{
-        display: block;
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        top: 3rem;
-        left: 0;
-        z-index: 10;
-        background: #0003
+      &:checked ~ label::before{
+        content: "\f058";
+        color: #07F;
+        text-decoration: underline #07F
       }
     }
   }
-}
-main{padding:calc(3rem + 10px + 1.5rem) 0}
+  button{
+    background: #18E;padding: .5rem 1rem;color: #FFF;box-shadow: 0 2px 10px #0003;transition: all .25s;
+    &:hover{box-shadow: none}
+  }
+  textarea{background: #FFF;padding: .5rem 1rem;border: solid 1px #CCC}
+  select{padding: .5rem 1rem;border: 1px solid #CCC}
 
-@keyframes fadeOut{
-  0%{opacity:1}
-  99%{z-index:1000}
-  100%{opacity:0;z-index:-1}
-}
+  select.is-invalid, input.is-invalid {
+    animation: 2s ease-in-out 5 both isInvalid
+  }
+  @keyframes isInvalid {
+    0%{background: #FFf}
+    50%{background: #FAA}
+    100%{background: #FFF}
+  }
+
+  h3{font-size: 1.5rem}
+  h4{font-size: 1.25rem}
+
+  .inner{width: 95%;max-width: 1000px;margin: 0 auto}
+  .card{padding: .5rem 1rem;border-radius: .25rem;background: #FFF;box-shadow: 0 2px 10px #0003}
+  .card:nth-of-type(n+2){margin-top: calc(10px + 1.5rem)}
+  .button{
+    display: inline-block;padding: .25rem 1rem;border-radius: .25rem;cursor: pointer;box-shadow: 0 2px 10px #0003;transition: all .25s;
+    &.first-button{background: linear-gradient(135deg, #0AF, #06F);color: #FFF}
+    &.second-button{background: linear-gradient(135deg, #CCC, #AAA);color: #FFF}
+    &:hover{box-shadow: none}
+  }
+  .error{text-align: center;font-weight: bold;color: #F60}
+  .omit{vertical-align: top;overflow: hidden;text-overflow: ellipsis;white-space: nowrap}
+  .message{
+    &.success,&.failed{padding: 1rem 2rem;position: fixed;left: 50%;transform: translateX(-50%);z-index: 1000;top: 2rem;animation: 3s ease-in-out 10s both fadeOut}
+    &.success{background: #CFC;color: #070}
+    &.failed{background: #FCC;color: #700}
+  }
+
+  body{background: #F5F5F5;font-family: 'Noto Sans JP', sans-serif}
+
+  header{
+    background: #FFF;
+    box-shadow: 0 2px 10px #0003;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    .inner {
+      position: relative;
+      img {
+        height: 2rem;
+        display: inline-block;
+        margin: .5rem;
+        vertical-align: top
+      }
+      ul{
+        list-style: none;
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 0rem;
+        li {
+          display: inline-block;
+          color: #06F;
+          background: #FFF;
+          transition: all .25s;
+          a {
+            display: inline-block;
+            line-height: 3rem;
+            padding: 0 1rem;
+            font-size: 1rem;
+            vertical-align: middle;
+            color: inherit;
+            background: inherit;
+          }
+          &.active, &:hover{
+            color: #FFF;
+            background: #06F;
+          }
+        }
+      }
+      label, #closeBoard{display: none}
+      @media screen and (max-width: 600px){
+        label{display: inline-block;line-height: 3rem;position: absolute;top: 0;right: 0}
+        ul{display: none}
+        #menuToggle:checked ~ ul{
+          display: block;
+          position: fixed;
+          top: 3rem;
+          left: 0;
+          z-index: 20;
+          li {
+            width: 100%
+          }
+        }
+        #menuToggle:checked ~ #closeBoard{
+          display: block;
+          position: fixed;
+          width: 100%;
+          height: 100vh;
+          top: 3rem;
+          left: 0;
+          z-index: 10;
+          background: #0003
+        }
+      }
+    }
+  }
+  main{padding: calc(3rem + 10px + 1.5rem) 0}
+
+  @keyframes fadeOut{
+    0%{opacity: 1}
+    99%{z-index: 1000}
+    100%{opacity: 0;z-index: -1}
+  }

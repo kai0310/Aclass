@@ -24,10 +24,10 @@ tr:nth-of-type(n+5) td, h2{text-align:center}
       @error('hash_login_id')<tr><td colspan=2><div class=error>{{ $message }}</div></td></tr>@enderror
 
       <tr>
-        <td><label for=name>氏名</label></td>
-        <td><input id=name type=text class="@error('hash_login_id') is-invalid @enderror" name=name value="{{ old('name') }}" required /></td>
+        <td><label for=temporary_password>仮パスワード</label></td>
+        <td><input id=temporary_password type=password class="@error('temporary_password') is-invalid @enderror" name=temporary_password required autocomplete=new-password></td>
       </tr>
-      @error('name')<tr><td colspan=2><div class=error>{{ $message }}</div></td></tr>@enderror
+      @error('temporary_password')<tr><td colspan=2><div class=error>{{ $message }}</div></td></tr>@enderror
 
       <tr>
         <td><label for=password>パスワード</label></td>

@@ -17,16 +17,15 @@ class LevelController extends Controller{
   }
 
   public function change(Request $request){
-    dd($request);
     $validated = $request->validate([
-      'user_id' => 'exists:users,id|numeric|required'
+      'user_id' => 'exists:users,id|numeric|required',
+      'level_id' => 'exists:levels,id|numeric|required',
     ]);
 
-
-    $user = User::find($validated['userId']);
-    $user->level = $validated['level'];
+    $user = User::find($validated['user_id']);
+    $user->level_id = $validated['level_id'];
     $user->save();
 
-    return redirect()->back()->with(['changeUserLevel' => '変更が完了しました。']);
+    return redirect()->back()->with(['result' => 'success', 'message' => 'レベルの変更に成功しました。']);
   }
 }

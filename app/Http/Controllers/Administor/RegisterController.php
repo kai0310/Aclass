@@ -21,21 +21,15 @@ class RegisterController extends Controller
         }
     }
 
-    $hash_login_id = hash('sha256', $login_id);
-    $encrypt_login_id = encryptData($login_id, 'USER_KEY');
-    $encrypt_email = encryptData($validated['email'], 'USER_KEY');
-    $encrypt_name = encryptData(trim($validated['name']), 'USER_KEY');
-
     User::create([
-        'login_id' => $encrypt_login_id,
-        'hash_login_id' => $hash_login_id,
-        'name' => $encrypt_name,
-        'email' => $encrypt_email,
+        'login_id' => encryptData($login_id, 'USER_KEY'),
+        'hash_login_id' => hash('sha256', $login_id),
+        'name' => encryptData(trim($validated['name']), 'USER_KEY'),
+        'email' => encryptData($validated['email'], 'USER_KEY'),
         'hash_email' => hash('sha256', $validated['email']),
-        'password' => 'temporary password',
         'level_id' => 3,
         'temporary' => true,
-        'temporary_password' => encryptData(base64_encode(random_bytes(8)), 'TEMP_KEY')
+        'temporary_password' => encryptData(random_int(100000, 999999), 'TEMP_KEY'),
     ]);
     return '作成に成功しました。';
   }
