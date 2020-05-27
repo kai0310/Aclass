@@ -29,7 +29,7 @@ class RegisterController extends Controller
         'hash_email' => hash('sha256', $validated['email']),
         'level_id' => 3,
         'temporary' => true,
-        'temporary_password' => encryptData(random_int(100000, 999999), 'USER_KEY'),
+        'temporary_password' => encryptData(random_int(100000, 999999), 'TEMP_KEY'),
     ]);
     return '作成に成功しました。';
   }

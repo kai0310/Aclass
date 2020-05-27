@@ -37,7 +37,7 @@ class NewController extends Controller
     }
 
     $requestUserData = User::where('hash_login_id', hash('sha256', $request->hash_login_id))->where('temporary', true)->first();
-    if(isset($requestUserData) && decryptData($requestUserData['temporary_password'], 'USER_KEY') == $request->temporary_password && $count === 1){
+    if(isset($requestUserData) && decryptData($requestUserData['temporary_password'], 'TEMP_KEY') == $request->temporary_password && $count === 1){
       $user = User::where('hash_login_id', hash('sha256', $request->hash_login_id))->first();
       $user->password = Hash::make($request->password);
       $user->temporary = false;
