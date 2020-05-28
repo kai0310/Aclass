@@ -1,5 +1,4 @@
-@extends('layouts.noLogin')
-
+@extends('layouts.common')
 
 @section('style')
 <style>
@@ -11,6 +10,7 @@ tr:nth-of-type(n+5) td, h2{text-align:center}
 .g-recaptcha > div{margin:0 auto}
 </style>
 @endsection
+
 @section('content')
 <div class=card>
   <h2>{{config('app.name')}} ログイン</h2>

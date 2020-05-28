@@ -12,21 +12,23 @@
 <header>
   <div class=inner>
     <img src="{{url('storage/logo.svg')}}" />
-    <input type=checkbox id=menuToggle style=display:hidden />
-    <label for=menuToggle>MENU</label>
-    <div id=closeBoard></div>
-    <ul>
-      <li class="{{request()->routeIs('home')?'active':''}}"><a href="{{route('home')}}">トップ</a></li>
-      <li class="{{request()->routeIs('tasks')?'active':''}}"><a href="{{route('tasks')}}">課題</a></li>
-      <li class="{{request()->routeIs('posts')?'active':''}}"><a href="{{route('posts')}}">掲示板</a></li>
-      <li class="{{request()->routeIs('others')?'active':''}}"><a href="{{route('others')}}">その他</a></li>
-      <?php if(Auth::check()&&Auth::user()->level['teacher']){ ?>
-        <li class="{{request()->routeIs('teacher')?'active':''}}"><a href="{{route('teacher')}}">教師用</a></li>
-      <?php } ?>
-      <?php if(Auth::check()&&Auth::user()->level['administor']){ ?>
-        <li class="{{request()->routeIs('administor')?'active':''}}"><a href="{{route('administor')}}">管理者用</a></li>
-      <?php } ?>
-    </ul>
+    <?php if(Auth::check()){ ?>
+      <input type=checkbox id=menuToggle style=display:hidden />
+      <label for=menuToggle>MENU</label>
+      <div id=closeBoard></div>
+      <ul>
+        <li class="{{request()->routeIs('home')?'active':''}}"><a href="{{route('home')}}">トップ</a></li>
+        <li class="{{request()->routeIs('tasks')?'active':''}}"><a href="{{route('tasks')}}">課題</a></li>
+        <li class="{{request()->routeIs('posts')?'active':''}}"><a href="{{route('posts')}}">掲示板</a></li>
+        <li class="{{request()->routeIs('others')?'active':''}}"><a href="{{route('others')}}">その他</a></li>
+        <?php if(Auth::user()->level['teacher']){ ?>
+          <li class="{{request()->routeIs('teacher')?'active':''}}"><a href="{{route('teacher')}}">教師用</a></li>
+        <?php } ?>
+        <?php if(Auth::user()->level['administor']){ ?>
+          <li class="{{request()->routeIs('administor')?'active':''}}"><a href="{{route('administor')}}">管理者用</a></li>
+        <?php } ?>
+      </ul>
+    <?php } ?>
   </div>
 </header>
 <main><div class=inner>@yield('content')</div></main>
