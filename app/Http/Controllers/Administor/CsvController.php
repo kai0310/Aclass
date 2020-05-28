@@ -25,7 +25,7 @@ class CsvController extends Controller
       foreach($users as $user){
         fputcsv($csv, mb_convert_encoding([
           decryptData($user['login_id'], 'USER_KEY'),
-          decryptData($user['temporary_password'], 'USER_KEY'),
+          decryptData($user['temporary_password'], 'TEMP_KEY'),
           decryptData($user['name'], 'USER_KEY')
         ], 'SJIS', 'UTF-8'));
       }
