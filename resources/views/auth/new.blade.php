@@ -10,7 +10,7 @@ td{padding:1rem}
 tr:nth-of-type(n+5) td, h2{text-align:center}
 .g-recaptcha > div{margin:0 auto}
 </style>
-
+@endsection
 @section('content')
 <div class=card>
   <h2>{{config('app.name')}} 新規会員登録</h2>
