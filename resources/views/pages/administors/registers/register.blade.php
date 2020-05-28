@@ -24,7 +24,7 @@ input[type="text"]:disabled,input[type="email"]:disabled{background:#F5F5F5}
 <div class=card>
   <h3>ユーザー登録</h3>
   ユーザーの仮登録ができます。本登録は、CSVにあるログインIDを用いて<br />
-  <a href="route('new')">{{route('new')}}</a><br />
+  <a href="{{route('new')}}">{{route('new')}}</a><br />
   から行えます。
   <div>
     <table id=newUser>
