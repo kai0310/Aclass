@@ -1,4 +1,4 @@
-@extends('layouts.noLogin')
+@extends('layouts.common')
 
 @section('style')
 <style>
