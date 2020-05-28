@@ -44,6 +44,14 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationFormViaAuthRegisterController()
+    {
+        if(Level::count() > 0){
+            abort(404);
+        }
+        return view('auth.register');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -52,6 +60,10 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        if(Level::count() > 0){
+            abort(404);
+        }
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
