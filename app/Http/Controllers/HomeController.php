@@ -44,12 +44,7 @@ class HomeController extends Controller
             }
         }
         $schedules = Schedule::whereIn('id', $thirtyDaysGroupSchedules)->with(['groups'])->get();
-        $thirtyDaysTasks = Task::whereDate('limit', '>=', date("Y-m-d"))->whereDate('limit', '<=', date("Y-m-d",strtotime("+30 day")))->whereIn('group_id',$allGroupId)->orderBy('limit', 'asc')->get();
-        $taskId = [];
-        foreach ($thirtyDaysTasks as $thirtyDaysTask){
-            $taskId[]=$thirtyDaysTask["id"];
-        }
-
-        return view('pages.home', ['schedules' => $schedules,'tasks'=>$thirtyDaysTasks]);
+        $fiveDaysTasks = Task::whereDate('limit', '>=', date("Y-m-d"))->whereDate('limit', '<=', date("Y-m-d",strtotime("+5 day")))->whereIn('group_id',$allGroupId)->orderBy('limit', 'asc')->get();
+        return view('pages.home', ['schedules' => $schedules,'tasks'=>$fiveDaysTasks]);
     }
 }
