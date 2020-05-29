@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Submission;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Schedule;
@@ -45,6 +46,23 @@ class HomeController extends Controller
         }
         $schedules = Schedule::whereIn('id', $thirtyDaysGroupSchedules)->with(['groups'])->get();
         $fiveDaysTasks = Task::whereDate('limit', '>=', date("Y-m-d"))->whereDate('limit', '<=', date("Y-m-d",strtotime("+5 day")))->whereIn('group_id',$allGroupId)->orderBy('limit', 'asc')->get();
-        return view('pages.home', ['schedules' => $schedules,'tasks'=>$fiveDaysTasks]);
+        $taskIds = [];
+        $taskCount = 0;
+        foreach ($fiveDaysTasks as $fiveDaysTask){
+            $taskIds[]=$fiveDaysTask["id"];
+            $limit= new DateTime($fiveDaysTask['limit']);
+            $diff = $limit->diff(new DateTime('now'));
+            $dateDiff = $diff->d;
+            if($dateDiff<1){
+                $fiveDaysTasks[$taskCount]['limit'] = "今日の".date('H時i分', strtotime($fiveDaysTask['limit']));
+            }else if($dateDiff<2){
+                $fiveDaysTasks[$taskCount]['limit'] = "明日の".date('H時i分', strtotime($fiveDaysTask['limit']));
+            }else{
+                $fiveDaysTasks[$taskCount]['limit'] = date('n月d日H時i分', strtotime($fiveDaysTask['limit']));
+            }
+            $taskCount++;
+        }
+        $finishTasksId = Submission::where('user_id',Auth::id())->whereIn('task_id',$taskIds)->pluck('id','task_id');
+        return view('pages.home', ['schedules' => $schedules,'tasks'=>$fiveDaysTasks,'finishTasksId'=>$finishTasksId]);
     }
 }

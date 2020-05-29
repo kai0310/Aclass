@@ -36,14 +36,21 @@
     </div>
     <div class="card">
         <h3>提出期限が迫っている課題</h3>
-        <?php foreach ($tasks as $task){ ?>
+        <?php
+        $hasTask = false;
+        foreach ($tasks as $task){
+        if(!isset($finishTasksId[$task['id']])){
+        ?>
         <div class="cardItem omit">
             <a href="{{route('taskSingle',['task_id'=>$task['id']])}}">
-                <h4 class=omit>{{date('n月j日H時i分まで', strtotime($task['limit']))}} - {{decryptData($task['title'], 'DATA_KEY')}}</h4>
+                <h4 class=omit>{{$task['limit']}} まで - {{decryptData($task['title'], 'DATA_KEY')}}</h4>
             </a>
         </div>
-        <?php }
-        if(count($tasks)===0){
+        <?php
+        $hasTask=true;
+        }
+        }
+        if(!$hasTask){
         ?>
         <div class=cardItem><h4>提出期限の迫った課題はありません</h4></div>
         <?php } ?>
