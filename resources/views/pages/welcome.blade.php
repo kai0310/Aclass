@@ -3,14 +3,12 @@
 @section('style')
 <style>
 .card{text-align:center}
-
 .fadeIn{animation-duration:1s;animation-name:fadeIn;animation-fill-mode:both}
 <?php
 for($i=0;$i<9;$i++){
   echo "#fadeIn",($i+1),"{animation-delay:",($i*0.5),"s}";
 }
 ?>
-
 .fadeIn a{text-decoration:none;background:linear-gradient(135deg, #0AF, #06F);color:#FFF;display:inline-block;padding:.25rem 1rem;border-radius:.25rem;cursor:pointer;box-shadow:0 2px 10px #0003;transition:all .25s}
 .fadeIn a:not(:last-of-type){margin-right:.5rem}
 .fadeIn a:hover{box-shadow:none}
