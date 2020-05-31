@@ -16,6 +16,7 @@
     echo "<li class='group omit'><a href='",route('groupSingle', [
       'group' => $group['id']
     ]),"'>",htmlspecialchars(decryptData($group['name'], 'DATA_KEY')),"&nbsp;&nbsp;<i class='fas fa-angle-double-right'></i></a></li>";
-  } ?></ul>
+  } ?>
+  </ul>
 </div>
 @endsection

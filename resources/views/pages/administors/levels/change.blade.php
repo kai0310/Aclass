@@ -14,14 +14,14 @@
 <div class=card>
   <h3>ユーザーの権限設定</h3>
   <form action="" method="POST">
-    @csrf
+  @csrf
     <?php if($errors->any()){ ?>
       <div class="message failed">
         <?php foreach($errors->all() as $error){ ?>
           - {{$error}}<br />
         <?php } ?>
       </div>
-    <?php } ?>
+	<?php } ?>
     <table id=changeUserLevelId>
       <tbody>
         <tr>

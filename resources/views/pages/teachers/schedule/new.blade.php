@@ -12,7 +12,7 @@ input[type="text"],textarea{width:100%}
 <div class=card>
   <h3>新しく予定を投稿する</h3>
   <form action="" method="POST" enctype="multipart/form-data">
-    @csrf
+  @csrf
     <div>
       <label for=name>名前</label><br />
       <input type=text name=name id=name placeholder="タイトルを入力してください" value="{{ old('name') }}" required />
